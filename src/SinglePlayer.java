@@ -8,7 +8,7 @@ public class SinglePlayer {
     }
 
     public void setPos(int pos) {
-        this.pos = pos;
+        this.pos = Math.max(pos, 0);
     }
 
     public int rollDie(){
