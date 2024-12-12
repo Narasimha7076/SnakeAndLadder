@@ -1,33 +1,44 @@
 import java.util.Random;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
         System.out.println("Snake And Ladder");
-        SinglePlayer s1 = new SinglePlayer();
-        Scanner sc = new Scanner(System.in);
-        int i=1;
-        Random r= new Random();
-        System.out.println("play game");
-        do {
-            int input = r.nextInt(3)+1;
-            switch (input){
-                case 1-> System.out.println("Position: "+s1.getPos());
-                case 2-> {
-                    int ladder = s1.rollDie();
-                    s1.setPos(i+ladder);
-                    System.out.println("Position: "+s1.getPos());
-                }
-                case 3->{
-                    int snake = s1.rollDie();
-                    s1.setPos(i-snake);
-                    System.out.println("Position: "+s1.getPos());
-                }
+        Player s1 = new Player();
+        Player s2 = new Player();
+        Player currentPlayer;
 
+        int chance = 0; // To toggle between player 1 and 2
+        Random random = new Random();
+        System.out.println("Game begins!");
+
+        while (true) {
+            currentPlayer = (chance == 0) ? s1 : s2;
+
+            // Roll the die
+            int roll = currentPlayer.rollDie();
+            System.out.println("Player-" + (chance + 1) + " rolls: " + roll);
+
+            // Update position
+            int newPosition = currentPlayer.getPos() + roll;
+            if (newPosition > 100) {
+                System.out.println("Player-" + (chance + 1) + " stays at position " + currentPlayer.getPos());
+            } else {
+                currentPlayer.setPos(newPosition);
+                System.out.println("Player-" + (chance + 1) + " moves to position " + currentPlayer.getPos());
             }
-            i = s1.getPos();
-        }while(i!=100);
-        System.out.println("Dice count: "+s1.dice);
+
+            // Check for win condition
+            if (currentPlayer.getPos() == 100) {
+                System.out.println("Player-" + (chance + 1) + " wins!");
+                break;
+            }
+
+            // Toggle turn
+            chance = 1 - chance;
+        }
+
+        System.out.println("Player-1 dice rolls: " + s1.dice);
+        System.out.println("Player-2 dice rolls: " + s2.dice);
     }
 }
