@@ -9,27 +9,24 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int i=1;
         Random r= new Random();
+        System.out.println("play game");
         do {
-            System.out.println("play game");
             int input = r.nextInt(3)+1;
             switch (input){
                 case 1-> System.out.println("Position: "+s1.getPos());
                 case 2-> {
                     int ladder = s1.rollDie();
-                    int position = s1.getPos();
-                    s1.setPos(position+ladder);
+                    s1.setPos(i+ladder);
                     System.out.println("Position: "+s1.getPos());
                 }
                 case 3->{
                     int snake = s1.rollDie();
-                    int position = s1.getPos();
-                    s1.setPos(position-snake);
+                    s1.setPos(i-snake);
                     System.out.println("Position: "+s1.getPos());
                 }
 
             }
-            System.out.println("Press 0 to exit");
-            i = sc.nextInt();
-        }while(i!=0);
+            i = s1.getPos();
+        }while(i!=5);
     }
 }
