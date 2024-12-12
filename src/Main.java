@@ -28,5 +28,6 @@ public class Main {
             }
             i = s1.getPos();
         }while(i!=100);
+        System.out.println("Dice count: "+s1.dice);
     }
 }
