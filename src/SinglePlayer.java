@@ -15,4 +15,5 @@ public class SinglePlayer {
         Random r = new Random();
         return r.nextInt(6)+1;
     }
+
 }
