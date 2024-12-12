@@ -27,6 +27,6 @@ public class Main {
 
             }
             i = s1.getPos();
-        }while(i!=5);
+        }while(i!=100);
     }
 }
